@@ -60,4 +60,29 @@ module.exports = function(app) {
       console.log('Models created: \n', Starship);
     });
   });
+
+  app.dataSources.mysqlDs.automigrate('Specie', function(err) {
+    if (err) throw err;
+
+    app.models.Specie.create([{
+      name: 'Droid',
+      classification: 'artificial',
+      designation: 'sentient',
+      average_height: 34,
+      skin_color: "brown",
+      language: "Galacticus"
+    }, {
+      name: 'Human',
+      classification: 'Mammal',
+      designation: 'sentient',
+      average_height: 180,
+      skin_color: 'black',
+      language: 'Galactic Basic'
+    }], function(err, Specie) {
+      if (err) throw err;
+
+      console.log('Models created: \n', Specie);
+    });
+  });
+  
 };
