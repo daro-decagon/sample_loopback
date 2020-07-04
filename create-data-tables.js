@@ -84,5 +84,21 @@ module.exports = function(app) {
       console.log('Models created: \n', Specie);
     });
   });
-  
+  app.models.Planet.create([{
+    name: 'Yavin IV',
+    rotation_period: 24,
+    orbital_period: 4818,
+    diameter: 10200,
+    population: 1000
+  }, {
+    name: 'Hoth',
+    rotation_period: 23,
+    orbital_period: 549,
+    diameter: 7200,
+    population: 12500
+  }], function(err, Planet) {
+    if (err) throw err;
+
+    console.log('Models created: \n', Planet);
+  });
 };
