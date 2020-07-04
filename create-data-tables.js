@@ -1,6 +1,7 @@
 module.exports = function(app) {
   app.dataSources.mysqlDs.automigrate('People', function(err) {
     if (err) throw err;
+
     app.models.People.create([{
       name: 'Luke Skywalker',
       height: 172,
@@ -16,8 +17,7 @@ module.exports = function(app) {
 
       console.log('Models created: \n', People);
     });
-  })
-
+  });
 
   app.dataSources.mysqlDs.automigrate('Film', function(err) {
     if (err) throw err;
@@ -35,7 +35,7 @@ module.exports = function(app) {
     }], function(err, People) {
       if (err) throw err;
 
-      console.log('Models created: \n', Film);
+      console.log('Models created: \n', People);
     });
   });
 
@@ -84,21 +84,26 @@ module.exports = function(app) {
       console.log('Models created: \n', Specie);
     });
   });
-  app.models.Planet.create([{
-    name: 'Yavin IV',
-    rotation_period: 24,
-    orbital_period: 4818,
-    diameter: 10200,
-    population: 1000
-  }, {
-    name: 'Hoth',
-    rotation_period: 23,
-    orbital_period: 549,
-    diameter: 7200,
-    population: 12500
-  }], function(err, Planet) {
+
+  app.dataSources.mysqlDs.automigrate('Planet', function(err) {
     if (err) throw err;
 
-    console.log('Models created: \n', Planet);
+    app.models.Planet.create([{
+      name: 'Yavin IV',
+      rotation_period: 24,
+      orbital_period: 4818,
+      diameter: 10200,
+      population: 1000
+    }, {
+      name: 'Hoth',
+      rotation_period: 23,
+      orbital_period: 549,
+      diameter: 7200,
+      population: 12500
+    }], function(err, Planet) {
+      if (err) throw err;
+
+      console.log('Models created: \n', Planet);
+    });
   });
 };
