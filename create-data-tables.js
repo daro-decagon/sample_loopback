@@ -35,7 +35,29 @@ module.exports = function(app) {
     }], function(err, People) {
       if (err) throw err;
 
-      console.log('Models created: \n', People);
+      console.log('Models created: \n', Film);
+    });
+  });
+
+  app.dataSources.mysqlDs.automigrate('Starship', function(err) {
+    if (err) throw err;
+
+    app.models.Starship.create([{
+      name: 'Death Star',
+      model: 'DS-1 Orbital Battle Station',
+      manufacturer: 'Imperial Department of Military Research',
+      passengers: 843342,
+      class: 'Deep Space Mobile Battlestation'
+    }, {
+      name: 'Sentinel-class landing craft',
+      model: 'Sentinel-class landing craft',
+      manufacturer: 'Sienar Fleet Systems, Cyngus Spaceworks',
+      passengers: 75,
+      class: 'Landing Craft'
+    }], function(err, Starship) {
+      if (err) throw err;
+
+      console.log('Models created: \n', Starship);
     });
   });
 };
